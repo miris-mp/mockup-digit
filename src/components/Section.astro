@@ -1,0 +1,38 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  label?: string;
+  description?: string;
+  tone?: "base" | "panel" | "ink";
+  number?: string;
+}
+const { id, title, label, description, tone = "base", number } = Astro.props;
+---
+<section
+  id={id}
+  aria-labelledby={`${id}-title`}
+  class:list={[
+    "py-section md:py-28",
+    tone === "panel" && "bg-panel",
+    tone === "ink" && "bg-ink text-on-ink",
+  ]}
+>
+  <div class="wrapper">
+    <div class:list={[
+      "mb-12 flex flex-wrap items-center gap-4 border-t pt-5 text-xs uppercase tracking-widest md:mb-16",
+      tone === "ink" ? "border-ink-line text-on-ink-muted" : "border-line text-muted",
+    ]}>
+      {number && <span class={tone === "ink" ? "text-accent" : "text-accent-ink"}>{number}</span>}
+      <span>{label || title}</span>
+      <span aria-hidden="true" class="ml-auto">DIGIT / {id}</span>
+    </div>
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
+      <header class="max-w-xl space-y-5">
+        <h2 id={`${id}-title`} class="text-3xl font-medium leading-tight tracking-tight md:text-4xl">{title}</h2>
+        {description && <p class={tone === "ink" ? "text-on-ink-muted" : "text-muted"}>{description}</p>}
+      </header>
+      <div><slot /></div>
+    </div>
+  </div>
+</section>

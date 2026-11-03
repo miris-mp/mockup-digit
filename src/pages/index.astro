@@ -1,11 +1,141 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import TeamList from "../components/TeamList.astro";
+import { hero, about, team, services, partners } from "../data/home";
+import { Image } from "astro:assets";
 ---
 
 <Layout>
-	<Welcome />
+  <section class="bg-ink text-on-ink" aria-labelledby="hero-title">
+    <div class="wrapper py-20 md:py-28">
+      <div
+        class="mb-14 flex flex-wrap items-center justify-between gap-4 border-b border-ink-line pb-5 text-xs uppercase tracking-widest text-on-ink-muted"
+      >
+        <span>
+          <span
+            class="mr-2 inline-block size-2 rounded-full bg-accent"
+            aria-hidden="true"></span>Ricerca · Software · Educazione</span
+        >
+      </div>
+      <div
+        class="grid gap-14 lg:grid-cols-[minmax(0,3fr)_minmax(0,0.65fr)] lg:gap-16"
+      >
+        <div>
+          <!-- <p class="mb-6 text-sm text-accent">
+            [ Tecnologia × impatto sociale ]
+          </p> -->
+          <h1
+            id="hero-title"
+            class="max-w- text-4xl font-medium leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl"
+          >
+            {hero.title}
+          </h1>
+          <p class="mt-8 max-w-2xl text-base leading-relaxed text-on-ink-muted">
+            {hero.description}
+          </p>
+          <a
+            href="#services"
+            class="mt-10 inline-flex items-center gap-4 bg-accent px-6 py-4 font-medium text-ink transition-opacity hover:opacity-85"
+          >
+            Esplora i servizi <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <!-- <aside
+          aria-label="Ambiti di attività DIGIT"
+          class="self-end border border-ink-line"
+        >
+          <div
+            class="flex items-center justify-between border-b border-ink-line px-card py-4 text-xs text-on-ink-muted"
+          >
+            <span>digit.system / focus</span><span class="text-accent"
+              >● ACTIVE</span
+            >
+          </div>
+          <div class="divide-y divide-ink-line">
+            <div class="flex items-center justify-between gap-4 p-card">
+              <span>01 / Ricerca</span><span class="text-accent">↗</span>
+            </div>
+            <div class="flex items-center justify-between gap-4 p-card">
+              <span>02 / Software</span><span class="text-accent">↗</span>
+            </div>
+            <div class="flex items-center justify-between gap-4 p-card">
+              <span>03 / Educazione</span><span class="text-accent">↗</span>
+            </div>
+          </div>
+          <div
+            class="border-t border-ink-line px-card py-4 text-xs text-on-ink-muted"
+          >
+            Three fields. One shared purpose.
+          </div>
+        </aside> -->
+      </div>
+    </div>
+  </section>
+
+  <Section id="about" number="01" label={about.label} title={about.title}>
+    <FeatureGrid items={about.items} />
+  </Section>
+
+  <Section
+    id="team"
+    number="02"
+    label={team.label}
+    title={team.title}
+    tone="panel"
+    description={team.description}
+  >
+    <TeamList members={team.members} />
+  </Section>
+
+  <Section
+    id="services"
+    number="03"
+    label={services.label}
+    title={services.title}
+    tone="ink"
+  >
+    <FeatureGrid items={services.items} variant="dark" />
+  </Section>
+
+  <Section id="partners" number="04" title={partners.title}>
+    {
+      partners.items.length > 0 ? (
+        <ul class="flex flex-wrap items-center justify-center gap-x-12 gap-y-10 py-6">
+          {partners.items.map((partner) => (
+            <li class="flex items-center justify-center">
+              {partner.href ? (
+                <a
+                  href={partner.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visita il sito di ${partner.name}`}
+                  class="group inline-flex items-center justify-center"
+                >
+                  <Image
+                    src={partner.image}
+                    alt={partner.name}
+                    class="h-14 w-auto max-w-40 object-contain transition-[filter] duration-300"
+                    loading="lazy"
+                  />
+                </a>
+              ) : (
+                <Image
+                  src={partner.image}
+                  alt={partner.name}
+                  class="h-14 w-auto max-w-40 object-contain"
+                  loading="lazy"
+                />
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="border-l-4 border-accent-ink pl-card text-muted">
+          L’elenco dei partner sarà disponibile a breve.
+        </p>
+      )
+    }
+  </Section>
 </Layout>
