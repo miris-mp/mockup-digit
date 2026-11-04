@@ -1,32 +1,38 @@
 ---
 import type { Feature } from "../data/home";
-interface Props { items: Feature[]; variant?: "editorial" | "dark"; }
+interface Props {
+  items: Feature[];
+  variant?: "editorial" | "dark";
+}
 const { items, variant = "editorial" } = Astro.props;
 ---
+
 <ul class="grid gap-card sm:grid-cols-2 lg:grid-cols-1">
-  {items.map((item, index) => (
-    <li class:list={[
-      "group border p-card transition-colors",
-      variant === "dark"
-        ? "border-ink-line bg-ink hover:border-accent"
-        : "border-line bg-surface hover:bg-panel",
-    ]}>
-      <div class="mb-8 flex items-center justify-between gap-4">
-        <span class={variant === "dark" ? "text-accent" : "text-accent-ink"}>
-          {String(index + 1).padStart(2, "0")} / 0{items.length}
-        </span>
-        <span aria-hidden="true" class={variant === "dark" ? "text-on-ink-muted" : "text-muted"}>↗</span>
-      </div>
-      <h3 class="mb-3 text-lg font-medium">{item.title}</h3>
-      <p class={variant === "dark" ? "text-on-ink-muted" : "text-muted"}>{item.description}</p>
-      {item.href !== "#" && (
-        <a href={item.href} class:list={[
-          "mt-6 inline-block underline underline-offset-4",
-          variant === "dark" ? "text-accent" : "text-accent-ink",
-        ]}>
-          Approfondisci <span class="sr-only">{item.title}</span> ↗
-        </a>
-      )}
-    </li>
-  ))}
+  {
+    items.map((item, index) => (
+      <li class="group border p-card transition-colors border-line bg-surface hover:bg-panel">
+        <div class="mb-8 flex items-center justify-between gap-4">
+          <span class={"text-accent-ink"}>
+            {String(index + 1).padStart(2, "0")} / 0{items.length}
+          </span>
+          <span aria-hidden="true" class={"text-muted"}>
+            ↗
+          </span>
+        </div>
+        <h3 class="mb-3 text-lg font-medium">{item.title}</h3>
+        <p class={"text-muted"}>{item.description}</p>
+        {item.href !== "#" && (
+          <a
+            href={item.href}
+            class:list={[
+              "mt-6 inline-block underline underline-offset-4",
+              "text-accent-ink",
+            ]}
+          >
+            Approfondisci <span class="sr-only">{item.title}</span> ↗
+          </a>
+        )}
+      </li>
+    ))
+  }
 </ul>

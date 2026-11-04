@@ -43,7 +43,7 @@ export const hero = {
 
 export const about = {
   label: "Su di noi",
-  title: "L’unione tra sociale e digitale per un futuro migliore",
+  title: "L'unione tra sociale e digitale per un futuro migliore",
   items: [
     {
       title: "Cultura digitale",

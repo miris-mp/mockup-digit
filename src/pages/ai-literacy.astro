@@ -1,0 +1,319 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { marked } from "marked";
+
+const page = {
+  title: "AI literacy per le aziende",
+  headline:
+    "Comprendere l’IA, coinvolgere le persone, esplorare le opportunità",
+  description:
+    "Un percorso partecipativo di AI literacy per coinvolgere il personale, esplorare i possibili casi d’uso e orientare le decisioni aziendali.",
+  premise: [
+    "Ogni trasformazione tecnologica deve partire dalle persone e dai processi. Anche l’introduzione dell’intelligenza artificiale in azienda richiede, prima della scelta degli strumenti, una riflessione condivisa sulle attività, sulle competenze e sugli obiettivi.",
+    "Con l’IA generativa questa esigenza è particolarmente evidente: il suo impiego nelle attività cognitive, linguistiche e creative incide sul rapporto tra competenze professionali, strumenti e responsabilità.",
+    "Il primo investimento è quindi sulle persone. Un’alfabetizzazione di base permette a tutti di partecipare consapevolmente alla riflessione che precede il cambiamento: demistificare l’IA, comprenderne potenzialità, limiti e rischi, immaginarne i benefici e riconoscere le condizioni necessarie per ottenerli.",
+    "Questa esigenza trova riscontro anche nell’articolo 4 dell’AI Act, il Regolamento europeo sull’intelligenza artificiale, che richiede ai fornitori e alle organizzazioni che utilizzano sistemi di IA di adottare misure a sostegno dell’alfabetizzazione del personale e delle altre persone che impiegano tali sistemi per loro conto.",
+  ],
+  proposal: {
+    intro:
+      "Proponiamo un **percorso partecipativo di alfabetizzazione** e prima esplorazione delle opportunità dell’IA, articolato in tre fasi, per una durata minima complessiva di sei ore.",
+    results: [
+      "una base comune di conoscenze e un linguaggio condiviso",
+      "una raccolta ragionata di possibili casi d’uso, riferiti al contesto aziendale",
+      "indicazioni utili al management aziendale per decidere quali approfondimenti e passi successivi intraprendere",
+    ],
+    optional:
+      "Al percorso di alfabetizzazione interna può essere abbinato un **incontro aperto** alle famiglie dei dipendenti o al pubblico, utile ad estendere il valore educativo dell’iniziativa e a rendere visibile l’impegno dell’azienda per una cultura consapevole dell’IA.",
+  },
+  phases: [
+    {
+      number: "01",
+      id: "alfabetizzazione",
+      title: "AI literacy per il personale",
+      duration: "Durata minima: 2 ore, in orario lavorativo",
+      paragraphs: [
+        "Un incontro introduttivo, accessibile anche senza competenze tecniche, per costruire riferimenti comuni e favorire una partecipazione informata.",
+        "I temi affrontati comprendono:",
+      ],
+      points: [
+        "da dove viene, che cosa fa e come funziona l’intelligenza artificiale;",
+        "che cosa cambia con l’IA generativa e i modelli linguistici;",
+        "principali tipi di IA, potenzialità e ambiti di applicazione;",
+        "limiti, rischi e necessità di verifica dei risultati;",
+        "competenze, responsabilità e ruolo delle persone.",
+      ],
+      closing: null,
+    },
+    {
+      number: "02",
+      id: "laboratorio",
+      title: "Focus group",
+      duration: "Durata: 2 ore",
+      paragraphs: [
+        "I partecipanti lavorano in gruppi, la cui composizione viene concordata con l’azienda, per esplorare il possibile contributo dell’IA a un’attività, a un processo o a un problema concreto.",
+        "Ogni gruppo sviluppa una proposta attraverso una traccia comune:",
+      ],
+      points: [
+        "situazione attuale e bisogno individuato;",
+        "possibile contributo dell’IA;",
+        "benefici e risultati attesi;",
+        "condizioni necessarie per l’adozione;",
+        "rischi, verifiche e forme di controllo umano.",
+      ],
+      closing:
+        "Il laboratorio valorizza la conoscenza dei processi da parte del personale e favorisce il confronto tra ruoli e competenze differenti.",
+    },
+    {
+      number: "03",
+      id: "restituzione",
+      title: "Restituzione e confronto",
+      duration: "Durata: 2 ore",
+      paragraphs: [
+        "I gruppi presentano le proposte elaborate. La discussione collettiva permette di confrontare le opportunità, esplicitare i dubbi e individuare gli aspetti che richiedono ulteriori approfondimenti.",
+        "Un questionario anonimo raccoglie il riscontro dei partecipanti sul percorso, insieme ad aspettative, preoccupazioni e bisogni formativi.",
+      ],
+      points: [],
+      closing: null,
+    },
+  ],
+  report: {
+    title: "Il report: dalla partecipazione alle decisioni",
+    intro:
+      "Il report è un elemento centrale dell’offerta: restituisce all’azienda una sintesi ragionata di quanto emerso e costituisce una base per orientare le decisioni successive.",
+    points: [
+      "opportunità individuate e processi interessati;",
+      "dubbi, aspettative e bisogni formativi;",
+      "condizioni favorevoli e ostacoli all’adozione;",
+      "proposte da approfondire attraverso successive valutazioni di fattibilità;",
+      "risultati aggregati e analisi dei questionari anonimi.",
+    ],
+    closing: [
+      "I casi d’uso emersi rappresentano ipotesi da valutare: il loro valore consiste nel rendere concrete e discutibili le possibili direzioni di cambiamento.",
+      "Il team di DIGIT è a disposizione del management aziendale per discutere gli esiti del percorso di  AI literacy, analizzare i bisogni formativi specifici e le opportunità di applicazione dell’IA, e consigliare le eventuali azioni da intraprendere.",
+    ],
+  },
+  event: {
+    title: "Incontro facoltativo per dipendenti e famiglie",
+    duration: "Durata: 1–2 ore",
+    paragraphs: [
+      "Una lezione-spettacolo dedicata all’intelligenza artificiale, con un formato concordato in funzione del pubblico, del luogo e dell’orario.",
+      "L’incontro offre un’occasione di welfare culturale, estendendo alle famiglie uno spazio di comprensione e confronto su una trasformazione che riguarda il lavoro e la vita quotidiana. Può anche essere aperto al pubblico, come iniziativa di dialogo con il territorio.",
+    ],
+  },
+  benefits: [
+    "promuovere una consapevolezza diffusa sull’IA;",
+    "coinvolgere attivamente il personale nella riflessione sul cambiamento;",
+    "raccogliere in modo strutturato opportunità, criticità e bisogni formativi;",
+    "comprendere gli atteggiamenti e le aspettative dei partecipanti;",
+    "disporre di elementi concreti per orientare i passi successivi;",
+    "comunicare l’impegno dell’azienda per un’adozione consapevole e responsabile dell’IA;",
+    "offrire, attraverso l’incontro facoltativo, un’esperienza di welfare culturale aperta alle famiglie e al territorio.",
+  ],
+  scientificLead: {
+    name: "Alessandro Bogliolo",
+    description:
+      " Professore di Sistemi di Elaborazione dell’Informazione all’Università di Urbino, dove dirige il Centro di Ricerca Multidisciplinare sull’Intelligenza Artificiale. ",
+  },
+};
+---
+
+<Layout title={`${page.title} | DIGIT`} description={page.description}>
+  <section class="page-hero" aria-labelledby="ai-literacy-title">
+    <div class="wrapper page-hero-inner">
+      <p class="page-eyebrow">[ {page.title} ]</p>
+      <h1 id="ai-literacy-title" class="page-title">{page.headline}</h1>
+    </div>
+  </section>
+
+  <section
+    id="premessa"
+    class="editorial-section"
+    aria-labelledby="premessa-title"
+  >
+    <div class="wrapper ai-block">
+      <div class="ai-chapter-heading">
+        <span class="ai-chapter-number" aria-hidden="true">00</span>
+        <h2 id="premessa-title" class="editorial-title">Premessa</h2>
+      </div>
+      <div class="ai-prose">
+        {page.premise.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="proposta"
+    class="ai-panel-section"
+    aria-labelledby="proposta-title"
+  >
+    <div class="wrapper ai-block">
+      <div class="ai-chapter-heading">
+        <span class="ai-chapter-number" aria-hidden="true">01</span>
+        <h2 id="proposta-title" class="editorial-title">La proposta</h2>
+      </div>
+
+      <p class="ai-lead" set:html={marked.parseInline(page.proposal.intro)} />
+
+      <p class="ai-kicker">Il percorso produce tre risultati tangibili:</p>
+
+      <ul class="ai-results">
+        {
+          page.proposal.results.map((result, index) => (
+            <li>
+              <a
+                href={`#${page.phases[index].id}`}
+                class="ai-result group"
+                aria-label={`Vai alla fase ${index + 1}: ${page.phases[index].title}`}
+              >
+                <span class="ai-result-index" aria-hidden="true">
+                  0{index + 1}
+                </span>
+
+                <span class="flex-1">{result}</span>
+
+                <span
+                  aria-hidden="true"
+                  class="text-accent-ink transition-transform group-hover:translate-x-1"
+                >
+                  ↗
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="ai-lead-box">
+        <p
+          class="ai-copy"
+          set:html={marked.parseInline(page.proposal.optional)}
+        />
+      </div>
+
+      <div class="ai-program" aria-labelledby="program-title">
+        <div class="ai-program-header">
+          <div>
+            <p class="ai-kicker">Il programma</p>
+          </div>
+
+          <span class="ai-program-duration"> 6 ore min. </span>
+        </div>
+
+        <ol class="ai-program-phases">
+          {
+            page.phases.map((phase) => (
+              <li>
+                <article
+                  id={phase.id}
+                  class="ai-program-phase"
+                  aria-labelledby={`${phase.id}-title`}
+                >
+                  <div class="ai-program-phase-header">
+                    <span class="ai-program-phase-index">
+                      Fase {phase.number}
+                    </span>
+
+                    <span class="ai-duration">{phase.duration}</span>
+                  </div>
+
+                  <h4 id={`${phase.id}-title`} class="ai-phase-title">
+                    {phase.title}
+                  </h4>
+
+                  <div class="ai-prose">
+                    {phase.paragraphs.map((paragraph) => (
+                      <p>{paragraph}</p>
+                    ))}
+
+                    {phase.points.length > 0 && (
+                      <ul class="ai-list">
+                        {phase.points.map((point) => (
+                          <li>{point}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {phase.closing && <p>{phase.closing}</p>}
+                  </div>
+                </article>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="percorso" class="" aria-labelledby="percorso-title"></section>
+
+  <section id="report" class="ai-ink-section" aria-labelledby="report-title">
+    <div class="wrapper ai-block">
+      <div class="ai-chapter-heading">
+        <span
+          class="ai-chapter-number ai-chapter-number-on-ink"
+          aria-hidden="true">03</span
+        >
+        <h2 id="report-title" class="editorial-title">{page.report.title}</h2>
+      </div>
+      <p class="ai-lead">{page.report.intro}</p>
+      <p class="ai-kicker ai-kicker-on-ink">Raccoglie</p>
+      <ul class="ai-list ai-list-on-ink">
+        {page.report.points.map((point) => <li>{point}</li>)}
+      </ul>
+      <div class="ai-prose">
+        {page.report.closing.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="incontro"
+    class="editorial-section"
+    aria-labelledby="incontro-title"
+  >
+    <div class="wrapper ai-block">
+      <div class="ai-chapter-heading">
+        <span class="ai-chapter-number" aria-hidden="true">04</span>
+        <h2 id="incontro-title" class="editorial-title">{page.event.title}</h2>
+      </div>
+      <p class="ai-duration">{page.event.duration}</p>
+      <div class="ai-prose">
+        {page.event.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section id="valore" class="ai-panel-section" aria-labelledby="valore-title">
+    <div class="wrapper ai-block">
+      <div class="ai-chapter-heading">
+        <span class="ai-chapter-number" aria-hidden="true">05</span>
+        <h2 id="valore-title" class="editorial-title">
+          Il valore per l’azienda
+        </h2>
+      </div>
+      <p class="ai-copy">Il percorso consente di:</p>
+      <ul class="ai-list">
+        {page.benefits.map((benefit) => <li>{benefit}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section
+    id="referente"
+    class="editorial-section"
+    aria-labelledby="referente-title"
+  >
+    <div class="wrapper ai-block">
+      <div class="ai-chapter-heading">
+        <span class="ai-chapter-number" aria-hidden="true">06</span>
+        <h2 id="referente-title" class="editorial-title">
+          Referente scientifico
+        </h2>
+      </div>
+      <div class="ai-lead-box">
+        <h3 class="ai-phase-title">{page.scientificLead.name}</h3>
+        <p class="ai-copy">{page.scientificLead.description}</p>
+      </div>
+    </div>
+  </section>
+</Layout>
