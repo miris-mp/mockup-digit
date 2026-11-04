@@ -43,8 +43,9 @@
   @apply mb-12 border-b border-ink-line pb-5 text-sm text-accent;
 }
 @utility page-title {
-  @apply max-w-4xl text-display font-medium tracking-tight sm:text-5xl lg:text-6xl;
+  @apply text-4xl font-medium leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl;
 }
+
 @utility editorial-section {
   @apply py-16 md:py-18;
 }
