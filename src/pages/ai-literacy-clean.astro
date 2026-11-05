@@ -1,0 +1,200 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { marked } from "marked";
+
+import { page } from "../data/ai-literacy-data.js";
+---
+
+<Layout title={`${page.title} | DIGIT`} description={page.description}>
+  <main class="clean-page">
+    <header class="page-header">
+      <h1>{page.headline}</h1>
+    </header>
+
+    <section id="premessa" aria-labelledby="premessa-title">
+      <h2 id="premessa-title">Premessa</h2>
+
+      {page.premise.map((paragraph) => <p>{paragraph}</p>)}
+    </section>
+
+    <section id="proposta" aria-labelledby="proposta-title">
+      <h2 id="proposta-title">La proposta</h2>
+
+      <p set:html={marked.parseInline(page.proposal.intro)} />
+
+      <h3>Il percorso produce tre risultati tangibili</h3>
+
+      <ul>
+        {page.proposal.results.map((result) => <li>{result}</li>)}
+      </ul>
+
+      <p set:html={marked.parseInline(page.proposal.optional)} />
+
+      <div id="programma">
+        <h3>Il programma</h3>
+        <p>Durata minima: 6 ore</p>
+
+        {
+          page.phases.map((phase) => (
+            <article id={phase.id} aria-labelledby={`${phase.id}-title`}>
+              <h4 id={`${phase.id}-title`}>
+                Fase {phase.number}: {phase.title}
+              </h4>
+
+              <p class="duration">{phase.duration}</p>
+
+              {phase.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+
+              {phase.points.length > 0 && (
+                <ul>
+                  {phase.points.map((point) => (
+                    <li>{point}</li>
+                  ))}
+                </ul>
+              )}
+
+              {phase.closing && <p>{phase.closing}</p>}
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="report" aria-labelledby="report-title">
+      <h2 id="report-title">{page.report.title}</h2>
+
+      <p>{page.report.intro}</p>
+
+      <h3>Raccoglie</h3>
+
+      <ul>
+        {page.report.points.map((point) => <li>{point}</li>)}
+      </ul>
+
+      {page.report.closing.map((paragraph) => <p>{paragraph}</p>)}
+    </section>
+
+    <section id="incontro" aria-labelledby="incontro-title">
+      <h2 id="incontro-title">{page.event.title}</h2>
+
+      <p class="duration">{page.event.duration}</p>
+
+      {page.event.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </section>
+
+    <section id="valore" aria-labelledby="valore-title">
+      <h2 id="valore-title">Il valore per l’azienda</h2>
+
+      <p>Il percorso consente di:</p>
+
+      <ul>
+        {page.benefits.map((benefit) => <li>{benefit}</li>)}
+      </ul>
+    </section>
+
+    <section id="referente" aria-labelledby="referente-title">
+      <h2 id="referente-title">Referente scientifico</h2>
+
+      <h3>{page.scientificLead.name}</h3>
+      <p>{page.scientificLead.description}</p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .clean-page {
+    width: min(100% - 40px, 1035px);
+    margin: 0 auto;
+    padding: 64px 0 96px;
+    color: inherit;
+    background: transparent;
+  }
+
+  .page-header {
+    margin-bottom: 64px;
+  }
+
+  section {
+    margin-bottom: 64px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 24px;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 32px 0 16px;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0 0 16px;
+  }
+
+  ul {
+    margin: 0 0 24px;
+    padding-left: 24px;
+  }
+
+  li {
+    line-height: 1.8;
+    margin-bottom: 8px;
+  }
+
+  article {
+    margin-top: 40px;
+  }
+
+  .duration {
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+  .clean-page ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 24px;
+    margin: 0 0 24px;
+  }
+
+  .clean-page ul li {
+    display: list-item;
+    line-height: 1.8;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .clean-page {
+      width: min(100% - 32px, 800px);
+      padding: 40px 0 64px;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
